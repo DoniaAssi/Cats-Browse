@@ -10,7 +10,7 @@
   --transition-speed: 0.3s;
 }
 .card {
-  position: relative; /* عشان زر المفضلة يكون فوق الصورة */
+  position: relative; 
 }
 
 .fav-btn {
@@ -97,9 +97,9 @@ nav a.active {
   font-weight: bold;
   margin-bottom: 20px;
 
-  color: var(--primary-color); /* هنا اللون */
+  color: var(--primary-color); 
   
-  text-align: center; /* يخلي النص بالوسط */
+  text-align: center; 
   padding: 20px;
   box-sizing: border-box;
 }
@@ -213,8 +213,8 @@ nav a.active {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
-  gap: 1.5rem; /* مسافة بين الصور */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
   padding: 1rem;
 }
 
