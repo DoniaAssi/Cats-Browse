@@ -13,7 +13,24 @@ const pageNumSpan = document.getElementById('pageNum');
 const backToBrowseBtn = document.getElementById('backToBrowse');
 
 let currentPage = 1;
-const limit = 6;
+//const limit = 6;
+
+function getLimitFromGrid() {
+  const gridStyles = window.getComputedStyle(document.querySelector('.grid'));
+  const columns = gridStyles.getPropertyValue('grid-template-columns').split(' ').length;
+  const rows = gridStyles.getPropertyValue('grid-template-rows').split(' ').length;
+  return columns * rows;
+}
+
+let limit = getLimitFromGrid();
+
+window.addEventListener('resize', () => {
+  limit = getLimitFromGrid();
+  currentPage = 1;
+  loadCats();
+});
+
+
 let totalCats = 0; 
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -68,13 +85,9 @@ async function loadCats() {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('Network response was not ok');
-
     const cats = await response.json();
-
     showLoading(false);
-
     if (cats.length === 0 && currentPage > 1) {
-      // لو مافي قطط للصفحة هذي، نرجع الصفحة السابقة
       currentPage--;
       return;
     }
