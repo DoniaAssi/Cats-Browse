@@ -220,7 +220,7 @@ nav a.active {
  .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(9, 250px); 
+  grid-template-rows: repeat(2, 250px); 
   gap: 1.5rem;
   padding: 1rem;
 }

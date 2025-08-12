@@ -67,12 +67,208 @@ function showBrowse() {
   loadCats();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let favCurrentPage = 1;
+let favTotal = 0;
+
+// function loadFavorites() {
+//     const start = (favCurrentPage - 1) * limit;
+//     const end = start + limit;
+//     const favsToShow = favorites.slice(start, end);
+
+//     const favGrid = document.querySelector('#favGrid');
+//     favGrid.innerHTML = "";
+
+//     favsToShow.forEach(cat => {
+//         const card = createCatCard(cat);
+//         favGrid.appendChild(card);
+//     });
+
+//     favTotal = favorites.length;
+//     updateFavPagination();
+// }
+
+// function updateFavPagination() {
+//     document.getElementById('prevBtnFav').disabled = favCurrentPage === 1;
+//     document.getElementById('nextBtnFav').disabled = favCurrentPage * limit >= favTotal;
+// }
+
+// document.getElementById('prevBtnFav').addEventListener('click', () => {
+//     if (favCurrentPage > 1) {
+//         favCurrentPage--;
+//         loadFavorites();
+//     }
+// });
+
+// document.getElementById('nextBtnFav').addEventListener('click', () => {
+//     if (favCurrentPage * limit < favTotal) {
+//         favCurrentPage++;
+//         loadFavorites();
+//     }
+// });
+
+// window.addEventListener('resize', () => {
+//     limit = getLimitFromGrid();
+//     favCurrentPage = 1;
+//     loadFavorites();
+// });
+
+function loadFavorites() {
+  favGrid.innerHTML = '';
+  favMsg.textContent = '';
+
+  if (favorites.length === 0) {
+    favMsg.textContent = 'No favorites yet. Go add some!';
+    document.getElementById('prevBtnFav').disabled = true;
+    document.getElementById('nextBtnFav').disabled = true;
+    return;
+  }
+
+  const start = (favCurrentPage - 1) * limit;
+  const end = start + limit;
+  const favsToShow = favorites.slice(start, end);
+
+  favsToShow.forEach(catId => {
+    const card = createCatCard(catId); 
+    favGrid.appendChild(card);
+  });
+
+  updateFavPagination();
+}
+
+function updateFavPagination() {
+  document.getElementById('prevBtnFav').disabled = favCurrentPage === 1;
+  document.getElementById('nextBtnFav').disabled = favCurrentPage * limit >= favorites.length;
+}
+
+document.getElementById('prevBtnFav').addEventListener('click', () => {
+  if (favCurrentPage > 1) {
+    favCurrentPage--;
+    loadFavorites();
+    document.getElementById('pageNumFav').textContent = favCurrentPage;
+  }
+});
+
+document.getElementById('nextBtnFav').addEventListener('click', () => {
+  if (favCurrentPage * limit < favorites.length) {
+    favCurrentPage++;
+    loadFavorites();
+    document.getElementById('pageNumFav').textContent = favCurrentPage;
+  }
+});
+function createCatCard(catId) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.style.position = 'relative';
+
+  const img = document.createElement('img');
+  img.src = `https://cataas.com/cat/${catId}`;
+  img.alt = 'Cat Image';
+  img.title = favorites.includes(catId) ? 'Click to remove from favorites' : 'Click to add to favorites';
+
+  card.appendChild(img);
+
+  const favBtn = document.createElement('button');
+  favBtn.classList.add('fav-btn');
+  favBtn.textContent = favorites.includes(catId) ? '★' : '☆';
+  favBtn.title = favorites.includes(catId) ? 'Remove from favorites' : 'Add to favorites';
+
+  if (favorites.includes(catId)) {
+    favBtn.classList.add('active');
+  }
+
+  favBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleFavorite(catId, favBtn);
+    loadFavorites(); 
+  });
+
+  card.appendChild(favBtn);
+
+  return card;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function showFavorites() {
   navFavs.classList.add('active');
   navBrowse.classList.remove('active');
   viewFavs.classList.remove('hidden');
   viewBrowse.classList.add('hidden');
-  renderFavorites();
+   favCurrentPage = 1; 
+  loadFavorites();
+  //renderFavorites();
 }
 
 async function loadCats() {
@@ -228,4 +424,3 @@ clearFavoritesBtn.addEventListener('click', () => {
   localStorage.setItem('favorites', JSON.stringify(favorites));
   renderFavorites();
 });
-
