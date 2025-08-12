@@ -11,10 +11,10 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pageNumSpan = document.getElementById('pageNum');
 const backToBrowseBtn = document.getElementById('backToBrowse');
-
+const clearFavoritesBtn = document.getElementById('clearFavorites');
+let favCurrentPage = 1;
+let favTotal = 0;
 let currentPage = 1;
-//const limit = 6;
-
 function getLimitFromGrid() {
   const gridStyles = window.getComputedStyle(document.querySelector('.grid'));
   const columns = gridStyles.getPropertyValue('grid-template-columns').split(' ').length;
@@ -66,73 +66,6 @@ function showBrowse() {
   favMsg.textContent = '';
   loadCats();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let favCurrentPage = 1;
-let favTotal = 0;
-
-// function loadFavorites() {
-//     const start = (favCurrentPage - 1) * limit;
-//     const end = start + limit;
-//     const favsToShow = favorites.slice(start, end);
-
-//     const favGrid = document.querySelector('#favGrid');
-//     favGrid.innerHTML = "";
-
-//     favsToShow.forEach(cat => {
-//         const card = createCatCard(cat);
-//         favGrid.appendChild(card);
-//     });
-
-//     favTotal = favorites.length;
-//     updateFavPagination();
-// }
-
-// function updateFavPagination() {
-//     document.getElementById('prevBtnFav').disabled = favCurrentPage === 1;
-//     document.getElementById('nextBtnFav').disabled = favCurrentPage * limit >= favTotal;
-// }
-
-// document.getElementById('prevBtnFav').addEventListener('click', () => {
-//     if (favCurrentPage > 1) {
-//         favCurrentPage--;
-//         loadFavorites();
-//     }
-// });
-
-// document.getElementById('nextBtnFav').addEventListener('click', () => {
-//     if (favCurrentPage * limit < favTotal) {
-//         favCurrentPage++;
-//         loadFavorites();
-//     }
-// });
-
-// window.addEventListener('resize', () => {
-//     limit = getLimitFromGrid();
-//     favCurrentPage = 1;
-//     loadFavorites();
-// });
-
 function loadFavorites() {
   favGrid.innerHTML = '';
   favMsg.textContent = '';
@@ -176,6 +109,14 @@ document.getElementById('nextBtnFav').addEventListener('click', () => {
     document.getElementById('pageNumFav').textContent = favCurrentPage;
   }
 });
+
+
+
+clearFavoritesBtn.addEventListener('click', () => {
+  favorites = [];
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  renderFavorites();
+});
 function createCatCard(catId) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -207,59 +148,6 @@ function createCatCard(catId) {
 
   return card;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function showFavorites() {
   navFavs.classList.add('active');
@@ -299,29 +187,9 @@ async function loadCats() {
 
 function renderCats(cats) {
   grid.innerHTML = '';
-
   cats.forEach(cat => {
-    // const img = document.createElement('img');
-    // img.src = `https://cataas.com/cat/${cat.id}`;
-    // img.alt = 'Cat Image';
-    // img.title = favorites.includes(cat.id) ? 'Click to remove from favorites' : 'Click to add to favorites';
-
-    // if (favorites.includes(cat.id)) {
-    //   img.classList.add('favorite');
-    // }
-
-    // img.addEventListener('click', () => {
-    //   toggleFavorite(cat.id, img);
-    // });
-
-    // grid.appendChild(img);
-
-
-    // إ
 const card = document.createElement('div');
-card.classList.add('card');
-
-// 
+card.classList.add('card'); 
 const img = document.createElement('img');
 img.src = `https://cataas.com/cat/${cat.id}`;
 img.alt = 'Cat Image';
@@ -415,12 +283,3 @@ function updatePaginationButtons(catsCount) {
 
 showBrowse();
 
-
-
-const clearFavoritesBtn = document.getElementById('clearFavorites');
-
-clearFavoritesBtn.addEventListener('click', () => {
-  favorites = [];
-  localStorage.setItem('favorites', JSON.stringify(favorites));
-  renderFavorites();
-});

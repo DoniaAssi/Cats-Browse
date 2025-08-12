@@ -2,9 +2,8 @@
   --font-family: Arial, sans-serif;
   --bg-color: #f8f8f8;
   --text-color: #333;
-  /*--primary-color: #708090 ; #004d40;*/
  --primary-color:  #454f58 ;
-  --primary-hover: #262b31; /*#00695c;*/
+  --primary-hover: #262b31; 
   --muted-color: #777;
   --border-radius: 8px;
   --transition-speed: 0.3s;
@@ -31,13 +30,6 @@
   color: gold;
 }
 
-/* body {
-  font-family: var(--font-family);
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-} */
 body {
   font-family: var(--font-family);
   margin: 0;
@@ -53,7 +45,7 @@ header {
   align-items: center;
   padding: 1rem;
   background-color: var(--primary-color);
-  color: white;
+  color: #ffffff;
 }
 
 .brand h3 {
@@ -66,13 +58,13 @@ header {
 nav a {
   margin-left: 1rem;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
 }
 
 nav a.active {
   font-weight: bold;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #ffffff;
 }
 
 
@@ -86,11 +78,6 @@ nav a.active {
   margin-top: -10px;
   margin-bottom: 20px;
 }
-
-
-
-
-
 
 .page-title {
   font-size: 2rem;
@@ -198,25 +185,6 @@ nav a.active {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 1.5rem;
-  padding: 1rem;
-} */
  .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -229,7 +197,7 @@ nav a.active {
 .card {
   background: white;
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px #0000001a;
   overflow: hidden;
   transition: transform var(--transition-speed);
 }
@@ -243,96 +211,6 @@ nav a.active {
   height: 250px; 
   object-fit: cover; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .loader-container {
     display: flex;
@@ -385,25 +263,6 @@ nav a.active {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 footer {
   background-color: var(--primary-color);
   color: white;
@@ -419,7 +278,7 @@ footer h4 {
 }
 
 footer a {
-  color: white;
+  color: #ffffff;
   text-decoration: underline;
 }
 
