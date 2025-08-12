@@ -18,8 +18,9 @@ const nav = document.querySelector('nav');
 let favCurrentPage = 1;
 let favTotal = 0;
 let currentPage = 1;
-let limit = getLimitFromGrid();
 
+
+let limit = getLimitFromGrid();
 
 
 hamburger.addEventListener('click', () => {
