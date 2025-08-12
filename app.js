@@ -18,14 +18,8 @@ const nav = document.querySelector('nav');
 let favCurrentPage = 1;
 let favTotal = 0;
 let currentPage = 1;
-function getLimitFromGrid() {
-  const gridStyles = window.getComputedStyle(document.querySelector('.grid'));
-  const columns = gridStyles.getPropertyValue('grid-template-columns').split(' ').length;
-  const rows = gridStyles.getPropertyValue('grid-template-rows').split(' ').length;
-  return columns * rows;
-}
-
 let limit = getLimitFromGrid();
+
 
 
 hamburger.addEventListener('click', () => {
@@ -66,6 +60,14 @@ nextBtn.addEventListener('click', () => {
   currentPage++;
   loadCats();
 });
+
+
+function getLimitFromGrid() {
+  const gridStyles = window.getComputedStyle(document.querySelector('.grid'));
+  const columns = gridStyles.getPropertyValue('grid-template-columns').split(' ').length;
+  const rows = gridStyles.getPropertyValue('grid-template-rows').split(' ').length;
+  return columns * rows;
+}
 
 function showBrowse() {
   navBrowse.classList.add('active');
