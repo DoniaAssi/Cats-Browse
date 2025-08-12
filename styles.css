@@ -187,7 +187,7 @@ nav a.active {
 
  .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 250px); 
   gap: 1.5rem;
   padding: 1rem;
@@ -284,4 +284,41 @@ footer a {
 
 footer a:hover {
   color: var(--primary-hover);
+}
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 0 0 8px 8px;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }

@@ -12,6 +12,9 @@ const nextBtn = document.getElementById('nextBtn');
 const pageNumSpan = document.getElementById('pageNum');
 const backToBrowseBtn = document.getElementById('backToBrowse');
 const clearFavoritesBtn = document.getElementById('clearFavorites');
+
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
 let favCurrentPage = 1;
 let favTotal = 0;
 let currentPage = 1;
@@ -23,6 +26,13 @@ function getLimitFromGrid() {
 }
 
 let limit = getLimitFromGrid();
+
+
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('show');
+});
+
+
 
 window.addEventListener('resize', () => {
   limit = getLimitFromGrid();
@@ -282,4 +292,5 @@ function updatePaginationButtons(catsCount) {
 }
 
 showBrowse();
+
 
