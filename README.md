@@ -10,7 +10,7 @@ Displays images in a grid layout with pagination for easy browsing.
 Users can add or remove favorites, which are saved in localStorage.
 The app is fully responsive, working on desktops, tablets, and mobile devices.
 
-Demo:
+
 ![Screenshot 1](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture1.png)
 ![Screenshot 2](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture2.png)
 ![Screenshot 3](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture3.png)
@@ -19,4 +19,5 @@ Demo:
 ![Screenshot 6](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture6.png)
 ![Screenshot 7](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture7.png)
 ![Screenshot 8](https://github.com/DoniaAssi/Cats-Browse/blob/review-branch/screenshot/Picture8.png)
+
 
