@@ -12,21 +12,20 @@ const nextBtn = document.getElementById('nextBtn');
 const pageNumSpan = document.getElementById('pageNum');
 const backToBrowseBtn = document.getElementById('backToBrowse');
 const clearFavoritesBtn = document.getElementById('clearFavorites');
-
+const pageNumFav =document.getElementById('pageNumFav');
+const prevBtnFav = document.getElementById('prevBtnFav');
+const nextBtnFav = document.getElementById('nextBtnFav');
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav');
 let favCurrentPage = 1;
 let favTotal = 0;
 let currentPage = 1;
-
-
 let limit = getLimitFromGrid();
 
 
 hamburger.addEventListener('click', () => {
   nav.classList.toggle('show');
 });
-
 
 
 window.addEventListener('resize', () => {
@@ -103,23 +102,23 @@ function loadFavorites() {
 }
 
 function updateFavPagination() {
-  document.getElementById('prevBtnFav').disabled = favCurrentPage === 1;
-  document.getElementById('nextBtnFav').disabled = favCurrentPage * limit >= favorites.length;
+   prevBtnFav.disabled = favCurrentPage === 1;
+  nextBtnFav.disabled = favCurrentPage * limit >= favorites.length;
 }
 
-document.getElementById('prevBtnFav').addEventListener('click', () => {
+prevBtnFav.addEventListener('click', () => {
   if (favCurrentPage > 1) {
     favCurrentPage--;
     loadFavorites();
-    document.getElementById('pageNumFav').textContent = favCurrentPage;
+    pageNumFav.textContent = favCurrentPage;
   }
 });
 
-document.getElementById('nextBtnFav').addEventListener('click', () => {
+ nextBtnFav.addEventListener('click', () => {
   if (favCurrentPage * limit < favorites.length) {
     favCurrentPage++;
     loadFavorites();
-    document.getElementById('pageNumFav').textContent = favCurrentPage;
+   pageNumFav.textContent = favCurrentPage;
   }
 });
 
@@ -130,6 +129,7 @@ clearFavoritesBtn.addEventListener('click', () => {
   localStorage.setItem('favorites', JSON.stringify(favorites));
   renderFavorites();
 });
+
 function createCatCard(catId) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -169,7 +169,7 @@ function showFavorites() {
   viewBrowse.classList.add('hidden');
    favCurrentPage = 1; 
   loadFavorites();
-  //renderFavorites();
+ 
 }
 
 async function loadCats() {
@@ -181,7 +181,8 @@ async function loadCats() {
 
   try {
     const response = await fetch(url);
-    if (!response.ok) throw new Error('Network response was not ok');
+   if (!response.ok) throw new Error(`Failed to fetch cats. Status: ${response.status}`);
+
     const cats = await response.json();
     showLoading(false);
     if (cats.length === 0 && currentPage > 1) {
@@ -194,7 +195,8 @@ async function loadCats() {
 
   } catch (error) {
     showLoading(false);
-    message.textContent = 'Failed to load cats. Please try again.';
+   message.textContent = `Error: ${error.message}. Please try again.`;
+
   }
 }
 
@@ -295,5 +297,3 @@ function updatePaginationButtons(catsCount) {
 }
 
 showBrowse();
-
-
